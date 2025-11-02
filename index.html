@@ -103,24 +103,5 @@
 
     window.addEventListener("load", autoSlide);
   </script>
-  <script>
-  // === TUYẾT RƠI ===
-  const snowContainer = document.createDocumentFragment();
-  const snowCount = 50; // số bông tuyết
-
-  for (let i = 0; i < snowCount; i++) {
-    const snowflake = document.createElement("div");
-    snowflake.classList.add("snowflake");
-    snowflake.textContent = "❄";
-    snowflake.style.left = Math.random() * 100 + "vw";
-    snowflake.style.animationDuration = 5 + Math.random() * 5 + "s";
-    snowflake.style.opacity = Math.random();
-    snowflake.style.fontSize = 12 + Math.random() * 14 + "px";
-    snowContainer.appendChild(snowflake);
-  }
-
-  document.body.appendChild(snowContainer);
-</script>
-
 </body>
 </html>
