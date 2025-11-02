@@ -49,39 +49,163 @@ body {
   border: 2px solid #fff;
   object-fit: cover;
 }
-/* === HIỆU ỨNG NEON CHẠY ĐỎ - TÍM === */
-@keyframes neonRedPurple {
+
+/* === TÊN ĐINH VIỆT QUỐC KHÁNH - NEON TRẮNG === */
+h1 {
+  color: #ffffff;
+  text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff,
+    0 0 35px rgba(255,255,255,0.9);
+  animation: whiteTitle 2.5s ease-in-out infinite;
+  -webkit-text-fill-color: #ffffff;
+}
+
+@keyframes whiteTitle {
   0%, 100% {
-    color: #ff2b2b;
     text-shadow:
-      0 0 5px #ff0000,
-      0 0 15px #ff0000,
-      0 0 30px #ff0000,
-      0 0 50px #ff0000;
+      0 0 5px #ffffff,
+      0 0 10px #ffffff,
+      0 0 20px #ffffff,
+      0 0 35px rgba(255,255,255,0.9);
   }
   50% {
-    color: #b400ff;
     text-shadow:
-      0 0 5px #b400ff,
-      0 0 15px #b400ff,
-      0 0 30px #b400ff,
-      0 0 50px #b400ff;
+      0 0 8px #e0e0e0,
+      0 0 16px #ffffff,
+      0 0 30px #ffffff,
+      0 0 45px rgba(255,255,255,1);
   }
 }
 
-h1 {
-  animation: neonRedPurple 2s infinite alternate;
+/* === KHUNG AVATAR MÙA ĐÔNG === */
+.avatar {
+  position: relative;
+  border: 3px solid #aee4ff;
+  box-shadow:
+    0 0 6px #aee4ff,
+    0 0 15px #aee4ff,
+    0 0 30px #6bd8ff,
+    0 0 45px #c3f7ff;
+  animation: winterNeon 4s ease-in-out infinite;
 }
 
-.location {
-  font-size: 14px;
-  color: #ccc;
-  margin-bottom: 5px;
+@keyframes winterNeon {
+  0%, 100% {
+    box-shadow:
+      0 0 6px #aee4ff,
+      0 0 15px #aee4ff,
+      0 0 30px #6bd8ff,
+      0 0 45px #c3f7ff;
+    border-color: #d9f9ff;
+  }
+  50% {
+    box-shadow:
+      0 0 8px #b5ecff,
+      0 0 20px #7be0ff,
+      0 0 40px #aee4ff,
+      0 0 60px #e6fcff;
+    border-color: #ffffff;
+  }
 }
 
+/* === NEON VÀNG CHO SYMBOL { / } === */
 .symbol {
-  color: #f3c93c;
+  color: #FFD700;
+  text-shadow:
+    0 0 5px #FFD700,
+    0 0 10px #FFD700,
+    0 0 20px #FFD700,
+    0 0 35px rgba(255,215,0,0.9);
+  animation: goldNeon 3s ease-in-out infinite;
+}
+
+@keyframes goldNeon {
+  0%, 100% {
+    text-shadow:
+      0 0 5px #FFD700,
+      0 0 10px #FFD700,
+      0 0 20px #FFD700,
+      0 0 35px rgba(255,215,0,0.9);
+  }
+  50% {
+    text-shadow:
+      0 0 8px #fff59e,
+      0 0 16px #FFD700,
+      0 0 30px #FFD700,
+      0 0 45px rgba(255,255,180,1);
+  }
+}
+
+/* === LƯỢT FOLLOW & TIM (NEON TRẮNG) === */
+.stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-top: 6px;
+  margin-bottom: 8px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 18px;
   font-weight: 700;
+  color: #ffffff;
+  text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff,
+    0 0 35px rgba(255,255,255,0.8);
+  animation: whitePulse 2.5s infinite ease-in-out;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #cccccc;
+  letter-spacing: 0.5px;
+}
+
+@keyframes whitePulse {
+  0%, 100% {
+    text-shadow:
+      0 0 5px #ffffff,
+      0 0 10px #ffffff,
+      0 0 20px #ffffff,
+      0 0 35px rgba(255,255,255,0.8);
+  }
+  50% {
+    text-shadow:
+      0 0 8px #e0e0e0,
+      0 0 16px #ffffff,
+      0 0 30px #ffffff,
+      0 0 45px rgba(255,255,255,1);
+  }
+}
+
+/* === HIỆU ỨNG NEON 7 MÀU CHO "NFA CLIENT VIET NAM" === */
+.contact-info span:last-child {
+  font-weight: 700;
+  background: linear-gradient(90deg,
+    red, orange, yellow, green, cyan, blue, violet, red);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowNeon 5s linear infinite;
+  text-shadow:
+    0 0 5px rgba(255,255,255,0.8),
+    0 0 15px rgba(255,255,255,0.7),
+    0 0 25px rgba(255,255,255,0.6);
+}
+
+@keyframes rainbowNeon {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
 }
 
 /* === MẠNG XÃ HỘI === */
@@ -103,10 +227,12 @@ h1 {
   background: rgba(255,255,255,0.05);
   transition: 0.25s;
 }
+
 .socials a:hover {
   transform: scale(1.1);
   background: rgba(255,255,255,0.15);
 }
+
 .socials img { width: 18px; height: 18px; }
 
 /* === CAROUSEL === */
@@ -144,37 +270,52 @@ h1 {
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   transition: transform 0.3s ease, background 0.3s ease;
 }
+
 .product-card img {
   width: 100%;
   height: 130px;
   border-radius: 8px;
   object-fit: cover;
 }
+
 .product-card h3 {
   font-size: 14px;
   margin: 6px 0 3px;
   color: #fff;
 }
+
 .product-card p.price {
   color: #FFD700;
   font-weight: 600;
   margin-bottom: 6px;
   font-size: 12px;
 }
+
+/* === NÚT "CHI TIẾT" PHONG CÁCH CLASSIC === */
 .buy-btn {
   display: inline-block;
-  background: #fff;
-  color: #000;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #222;
+  border: 1.5px solid #ffffff;
   border-radius: 6px;
-  padding: 5px 8px;
-  font-size: 11px;
+  text-transform: uppercase;
   text-decoration: none;
-  transition: 0.3s;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
+
 .buy-btn:hover {
-  background: #000;
-  color: #fff;
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  transform: translateY(-2px);
 }
+
+
 
 /* === BUTTON TRÁI / PHẢI === */
 .arrow {
@@ -185,13 +326,12 @@ h1 {
   border-radius: 50%;
   width: 45px;
   height: 45px;
-  aspect-ratio: 1 / 1;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   backdrop-filter: blur(4px);
   transition: all 0.3s ease;
-  flex-shrink: 0;
 }
+
 .arrow:hover {
   background: linear-gradient(145deg, rgba(255,255,255,0.45), rgba(255,255,255,0.25));
   transform: scale(1.1) rotate(5deg);
