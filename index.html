@@ -115,12 +115,12 @@
       autoScroll = setInterval(() => {
         currentIndex = (currentIndex + 1) % cards.length;
         scrollToCard(currentIndex);
-      }, 4500);
+      }, 4000);
     }
 
     function resetAutoScroll() {
       clearInterval(autoScroll);
-      setTimeout(autoSlide, 4500);
+      setTimeout(autoSlide, 4000);
     }
 
     window.addEventListener("load", autoSlide);
