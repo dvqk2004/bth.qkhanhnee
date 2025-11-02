@@ -4,7 +4,7 @@ body {
   padding: 0;
   color: #fff;
   text-align: center;
-  background: url("dfr99g4-c56a9a87-3c95-46aa-9a22-252833072903.gif") no-repeat center center fixed;
+  background: url("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExajR2MjFwd2lnNDVqZG80OTh6NXQya2dkczBnMTFoZGZybmFnNDZwdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yrSnVHghe1AMLta5bl/giphy.gif") no-repeat center center fixed;
   background-size: cover;
   overflow-x: hidden;
   display: flex;
@@ -366,3 +366,4 @@ html, body {
   width: 100%;
   max-width: 100%;
 }
+
