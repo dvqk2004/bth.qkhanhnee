@@ -360,3 +360,41 @@ h1 {
 @media (max-width: 600px) {
   .product-card { flex: 0 0 90%; }
 }
+/* === SPOTIFY PLAYER - NEON ĐEN === */
+.spotify-player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.spotify-player iframe {
+  width: 70%; /* bằng thẻ sản phẩm */
+  max-width: 545px;
+  height: 80px;
+  border-radius: 12px;
+  box-shadow:
+    0 0 8px #000,
+    0 0 15px #000,
+    0 0 25px rgba(0, 0, 0, 0.8);
+  animation: blackNeon 4s ease-in-out infinite;
+}
+
+@keyframes blackNeon {
+  0%, 100% {
+    box-shadow:
+      0 0 6px #000,
+      0 0 14px #000,
+      0 0 25px rgba(0, 0, 0, 0.9);
+  }
+  50% {
+    box-shadow:
+      0 0 10px #111,
+      0 0 20px #000,
+      0 0 40px rgba(0, 0, 0, 1);
+  }
+}
+
+
