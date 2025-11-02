@@ -370,9 +370,19 @@ h1 {
   width: 100%;
 }
 
+/* === SPOTIFY PLAYER - NGẮN LẠI VỪA KHUNG SẢN PHẨM === */
+.spotify-player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
 .spotify-player iframe {
-  width: 70%; /* bằng thẻ sản phẩm */
-  max-width: 600px;
+  width: 65%; /* giảm nhẹ chiều dài */
+  max-width: 600px; /* bằng đúng khung sản phẩm */
   height: 80px;
   border-radius: 12px;
   box-shadow:
@@ -396,6 +406,29 @@ h1 {
       0 0 40px rgba(0, 0, 0, 1);
   }
 }
+
+/* === KHẮC PHỤC LỖI CUỘN NGANG TRÊN ĐIỆN THOẠI === */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Đảm bảo Spotify và carousel không vượt khung */
+.spotify-player iframe,
+.product-track,
+.product-carousel {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Giới hạn hình ảnh không bị tràn */
+img, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 
 
