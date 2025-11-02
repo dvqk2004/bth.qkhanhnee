@@ -372,7 +372,7 @@ h1 {
 
 .spotify-player iframe {
   width: 70%; /* bằng thẻ sản phẩm */
-  max-width: 545px;
+  max-width: 600px;
   height: 80px;
   border-radius: 12px;
   box-shadow:
@@ -396,5 +396,6 @@ h1 {
       0 0 40px rgba(0, 0, 0, 1);
   }
 }
+
 
 
