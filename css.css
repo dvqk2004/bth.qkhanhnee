@@ -19,7 +19,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("dfr99g4-c56a9a87-3c95-46aa-9a22-252833072903.gif") no-repeat center center / cover;
+  background: url("rain.gif") no-repeat center center / cover;
   z-index: -2;
 }
 
@@ -213,4 +213,5 @@ h1 {
 @media (max-width: 600px) {
   .product-card { flex: 0 0 90%; }
 }
+
 
