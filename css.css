@@ -52,14 +52,14 @@ body {
 
 /* === TÊN ĐINH VIỆT QUỐC KHÁNH - NEON TRẮNG === */
 h1 {
-  color: #ffffff;
+  color: #00ffff;
   text-shadow:
-    0 0 5px #ffffff,
-    0 0 10px #ffffff,
-    0 0 20px #ffffff,
-    0 0 35px rgba(255,255,255,0.9);
+    0 0 5px #00ffff,
+    0 0 10px #00ffff,
+    0 0 20px #00ffff,
+    0 0 35px rgb(255, 255, 255);
   animation: whiteTitle 2.5s ease-in-out infinite;
-  -webkit-text-fill-color: #ffffff;
+  -webkit-text-fill-color: #00ffff;
 }
 
 @keyframes whiteTitle {
@@ -120,7 +120,6 @@ h1 {
     0 0 35px rgba(255,215,0,0.9);
   animation: goldNeon 3s ease-in-out infinite;
 }
-
 @keyframes goldNeon {
   0%, 100% {
     text-shadow:
@@ -366,8 +365,277 @@ html, body {
   width: 100%;
   max-width: 100%;
 }
+/* === AVATAR ADMIN BO TRÒN VÀ HIỆU ỨNG NEON === */
+.admin-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+}
 
+.admin-avatar {
+  width: 70px; /* bạn có thể tăng/giảm tùy thích */
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00ffff;
+  box-shadow:
+    0 0 6px #00ffff,
+    0 0 15px #00ffff,
+    0 0 30px #00ffff;
+  animation: adminGlow 3s ease-in-out infinite;
+}
 
+@keyframes adminGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 6px #00ffff,
+      0 0 15px #00ffff,
+      0 0 30px #00ffff;
+  }
+  50% {
+    box-shadow:
+      0 0 8px #99ffff,
+      0 0 20px #00ffff,
+      0 0 40px #00ffff;
+  }
+}
 
+.admin-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
 
+.admin-label {
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
+}
 
+.admin-name {
+  color: #00ffff;
+  font-weight: 700;
+  text-shadow:
+    0 0 5px #00ffff,
+    0 0 10px #00ffff,
+    0 0 25px #00ffff;
+}
+/* === KHUNG NEON CHO CÁC Ô FOLLOW / HEART / SHARE === */
+.stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.stat-item {
+  padding: 12px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 8px rgba(255,255,255,0.3),
+    inset 0 0 6px rgba(255,255,255,0.2);
+  transition: 0.3s ease;
+  text-align: center;
+}
+
+.stat-item:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 12px rgba(255,255,255,0.6),
+    inset 0 0 10px rgba(255,255,255,0.4);
+}
+
+.stat-number {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fffff
+}
+/* === KHUNG NEON NHỎ GỌN CHO FOLLOW / HEART / SHARE === */
+.stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; /* giảm khoảng cách giữa các ô */
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+
+.stat-item {
+  padding: 6px 10px; /* nhỏ hơn 1 nửa */
+  min-width: 70px; /* giữ kích thước ổn định */
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 6px rgba(255,255,255,0.25),
+    inset 0 0 4px rgba(255,255,255,0.15);
+  transition: 0.3s ease;
+  text-align: center;
+}
+
+.stat-item:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 10px rgba(255,255,255,0.6),
+    inset 0 0 8px rgba(255,255,255,0.3);
+}
+
+.stat-number {
+  font-size: 14px; /* giảm kích thước chữ */
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow:
+    0 0 4px #ffffff,
+    0 0 8px #ffffff;
+}
+
+.stat-label {
+  font-size: 10px; /* nhỏ hơn để cân đối */
+  color: #cccccc;
+  letter-spacing: 0.5px;
+}
+/* === OWNER TITLE (NEON TRẮNG + AQUA) === */
+.owner-title {
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+}
+/* === TÊN QKHANHNEE FULL NEON XANH AQUA === */
+/* === QKHANHNEE FULL NEON XANH NGỌC, KHÔNG PHA TRẮNG === */
+.owner-name {
+  color: #00ffff; /* nền chữ xanh ngọc thuần */
+  font-weight: 700;
+  text-shadow:
+    0 0 6px #00ffff,
+    0 0 12px #00ffff,
+    0 0 25px #00ffff,
+    0 0 40px #00ffff,
+    0 0 60px #00ffff;
+  animation: aquaPureGlow 3s ease-in-out infinite;
+}
+
+@keyframes aquaPureGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 6px #00ffff,
+      0 0 12px #00ffff,
+      0 0 25px #00ffff,
+      0 0 40px #00ffff,
+      0 0 60px #00ffff;
+  }
+  50% {
+    text-shadow:
+      0 0 10px #00e0e0,
+      0 0 20px #00ffff,
+      0 0 40px #00ffff,
+      0 0 80px #00ffff;
+  }
+}
+@keyframes aquaNeonFull {
+  0%, 100% {
+    text-shadow:
+      0 0 6px #00ffff,
+      0 0 12px #00ffff,
+      0 0 25px #00ffff,
+      0 0 40px #00ffff,
+      0 0 60px #00ffff,
+      0 0 80px #00ffff;
+  }
+  50% {
+    text-shadow:
+      0 0 10px #66ffff,
+      0 0 20px #33ffff,
+      0 0 40px #00ffff,
+      0 0 70px #00ffff,
+      0 0 90px #00ffff,
+      0 0 120px #00ffff;
+  }
+}
+@keyframes aquaNeonPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 6px #00ffff,
+      0 0 12px #00ffff,
+      0 0 25px #00ffff;
+  }
+  50% {
+    text-shadow:
+      0 0 10px #66ffff,
+      0 0 20px #00ffff,
+      0 0 35px #00ffff;
+  }
+}
+/* === OWNER & QKHANHNEE CHỈNH KÍCH THƯỚC + MÀU === */
+.owner-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.crown {
+  color: #FFD700;
+  text-shadow:
+    0 0 6px #FFD700,
+    0 0 12px #FFD700,
+    0 0 25px #FFD700,
+    0 0 40px rgba(255,215,0,0.9);
+  animation: crownGlow 2.5s ease-in-out infinite;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+/* === OWNER NEON 7 MÀU CHUYỂN ĐỘNG === */
+.owner-white {
+  font-size: 14px;
+  font-weight: 700;
+  background: linear-gradient(90deg,
+    red, orange, yellow, green, cyan, blue, violet, red);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ownerRainbow 4s linear infinite;
+  text-shadow:
+    0 0 8px rgba(255,255,255,0.8),
+    0 0 15px rgba(255,255,255,0.6),
+    0 0 25px rgba(255,255,255,0.4);
+}
+
+@keyframes ownerRainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
+/* === QKHANHNEE NEON 7 MÀU FULL RỰC === */
+.owner-name {
+  font-size: 14px;
+  font-weight: 700;
+  background: linear-gradient(90deg,
+    red, orange, yellow, green, cyan, blue, violet, red);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: qkhanhneeRainbow 3s linear infinite;
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.9),
+    0 0 20px rgba(255,255,255,0.8),
+    0 0 30px rgba(255,255,255,0.7),
+    0 0 50px rgba(255,255,255,0.6);
+}
+
+@keyframes qkhanhneeRainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
