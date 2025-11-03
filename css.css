@@ -653,7 +653,7 @@ html, body {
   transition: all 0.3s ease;
   transform-style: preserve-3d;
 }
-.avatar, h1, .stats, .socials, .product-carousel {
+.avatar, h1, .stats, .socials, .product-carousel, .contact-info {
   opacity: 0;
   transform: translateY(10px);
   animation: fadeUp 0.9s ease forwards;
@@ -664,4 +664,3 @@ html, body {
     transform: translateY(0);
   }
 }
-
