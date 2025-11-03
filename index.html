@@ -128,41 +128,51 @@
     window.addEventListener("load", autoSlide);
   </script>
 <script>
-async function updateTikTokStats() {
-  const secUid = "MS4wLjABAAAAp8JffUO2aO0tBTu0w4Cff2yKkOM2zPjkc297tIX1ghqNT9wOuDFuW7YGOBaltllQ";
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "fa9d6cd133mshff09df6a4004c04p1d4726jsn89c74ea0a3bd",
-      "X-RapidAPI-Host": "tiktok-api23.p.rapidapi.com"
-    }
-  };
+const followersEl = document.querySelector(".stat-item:nth-child(1) .stat-number");
+const heartsEl = document.querySelector(".stat-item:nth-child(2) .stat-number");
 
-  // 🚀 Chạy hiệu ứng xoay ngay khi web load (trước khi có dữ liệu thật)
-  const numbers = document.querySelectorAll(".stat-number");
-  numbers.forEach(el => preAnimate(el));
+// 🔹 Hiệu ứng random số ngay khi vào web
+function startRandomNumbers() {
+  const randomInterval = setInterval(() => {
+    followersEl.textContent = formatNumber(Math.floor(Math.random() * 10000));
+    heartsEl.textContent = formatNumber(Math.floor(Math.random() * 500000));
+  }, 80);
+  return randomInterval;
+}
+
+// 🔹 Khi có dữ liệu thật → dừng random và chạy đếm chuẩn
+async function updateTikTokStats() {
+  const accessToken = "YOUR_ACCESS_TOKEN"; // 🔸 Dán token TikTok thật vào đây sau khi app duyệt
+  const randomAnim = startRandomNumbers(); // Bắt đầu random trước
 
   try {
-    const res = await fetch(`https://tiktok-api23.p.rapidapi.com/api/user/info?uniqueId=dvqk4`, options);
-    const data = await res.json();
-    console.log("Dữ liệu TikTok:", data);
+    const res = await fetch("https://open.tiktokapis.com/v2/user/info/", {
+      headers: {
+        "Authorization": `Bearer ${accessToken}`,
+        "Content-Type": "application/json"
+      }
+    });
 
-    if (data && data.userInfo && data.userInfo.stats) {
-      const stats = data.userInfo.stats;
-      animateNumber(document.querySelector(".stat-item:nth-child(1) .stat-number"), stats.followerCount);
-      animateNumber(document.querySelector(".stat-item:nth-child(2) .stat-number"), stats.heart);
-      animateNumber(document.querySelector(".stat-item:nth-child(3) .stat-number"), stats.followingCount);
-    } else {
-      console.warn("Không tìm thấy dữ liệu người dùng:", data);
-    }
-  } catch (error) {
-    console.error("Lỗi khi gọi API:", error);
+    const data = await res.json();
+    console.log("TikTok data:", data);
+    const user = data.data.user;
+
+    // Dừng random sau khi có dữ liệu thật
+    clearInterval(randomAnim);
+
+    // Chạy hiệu ứng đếm mượt về số thật
+    animateNumber(followersEl, user.follower_count);
+    animateNumber(heartsEl, user.heart_count);
+
+  } catch (err) {
+    console.error("API error:", err);
+    clearInterval(randomAnim);
   }
 }
 
-// 🔹 Hiệu ứng đếm từ 0 đến số thật (có xoay nhẹ)
+// 🔹 Đếm mượt từ số hiện tại về số thật
 function animateNumber(element, endValue) {
-  let startValue = 0;
+  let startValue = parseNumber(element.textContent) || 0;
   const duration = 2000;
   const frameRate = 60;
   const totalFrames = Math.round(duration / (1000 / frameRate));
@@ -171,32 +181,30 @@ function animateNumber(element, endValue) {
   const counter = setInterval(() => {
     frame++;
     const progress = frame / totalFrames;
-    const value = Math.floor(progress * endValue);
-    element.textContent = value.toLocaleString();
-
-    // Xoay nhẹ 3D (giữ số, không mờ)
-    element.style.transform = `rotateX(${Math.sin(progress * Math.PI) * 15}deg)`;
-    element.style.transition = "transform 0.1s linear";
+    const value = Math.floor(startValue + (endValue - startValue) * progress);
+    element.textContent = formatNumber(value);
 
     if (frame >= totalFrames) {
       clearInterval(counter);
-      element.textContent = endValue.toLocaleString();
-      element.style.transform = "rotateX(0deg)";
+      element.textContent = formatNumber(endValue);
     }
   }, 1000 / frameRate);
 }
 
-// 🔹 Hiệu ứng quay nhẹ lúc chờ API (giả lập tải dữ liệu)
-function preAnimate(element) {
-  element.textContent = "0";
-  element.style.animation = "spinNumber 1s linear infinite";
+// 🔹 Rút gọn số: K / M / B
+function formatNumber(num) {
+  if (num >= 1_000_000_000) return (num / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + "B";
+  if (num >= 1_000_000) return (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + "M";
+  if (num >= 1_000) return (num / 1_000).toFixed(1).replace(/\.0$/, '') + "K";
+  return num.toLocaleString();
 }
 
-// 🔹 Dừng hiệu ứng quay sau khi có dữ liệu thật
-function stopPreAnimate(element) {
-  element.style.animation = "none";
+// 🔹 Đọc lại số (bỏ chữ K/M để tính toán)
+function parseNumber(str) {
+  return parseFloat(str.replace(/[^0-9.]/g, "")) || 0;
 }
 
+// 🚀 Gọi API ngay khi load web
 updateTikTokStats();
 </script>
 
