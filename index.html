@@ -26,6 +26,15 @@
       <span class="symbol">{ / }</span>
       <span>NFA CLIENT VIET NAM</span>
     </div>
+<div class="game-overlay-card">
+  <img src="icons/visual.png" alt="App Icon" class="game-icon">
+  <div class="game-info">
+    <p class="status">🎮 Đang chơi</p>
+    <p class="game-name">Visual Studio Code</p>
+    <p class="game-time">🕒 <span id="playTime">00:00</span></p>
+  </div>
+</div>
+
 <div class="stats neon-box">
   <div class="stat-item">
     <span class="stat-number">9327</span>
@@ -36,6 +45,8 @@
     <span class="stat-label">Hearts</span>
   </div>
 </div>
+<div class="game-overlay"></div>
+
   <!-- MẠNG XÃ HỘI -->
 <div class="social-blocks">
   <a href="https://web.facebook.com/bth.qkhanhnee/" class="social-card">
@@ -82,7 +93,6 @@
 </div>
 
 </div>
-  <footer class="copyright">© 2025 Đinh Việt Quốc Khánh</footer>
   <!-- === SCRIPT: AUTO SNAP + CONTROL === -->
   <script>
     const track = document.getElementById("productTrack");
@@ -224,6 +234,46 @@ window.addEventListener("load", () => {
 
   faders.forEach(el => appear.observe(el));
 });
+</script>
+<script>
+let seconds = 0;
+
+function updateTimer() {
+  seconds++;
+  const hours = String(Math.floor(seconds / 3600)).padStart(2, "0");
+  const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+  const sec = String(seconds % 60).padStart(2, "0");
+  document.getElementById("playTime").textContent = `${hours}:${minutes}:${sec}`;
+}
+
+setInterval(updateTimer, 1000);
+</script>
+<script>
+const playTimeEl = document.getElementById("playTime");
+
+// 🕒 Lấy thời gian bắt đầu (nếu có)
+let startTime = localStorage.getItem("gameStartTime");
+
+if (!startTime) {
+  // Nếu chưa có, lưu thời gian hiện tại
+  startTime = Date.now();
+  localStorage.setItem("gameStartTime", startTime);
+}
+
+function updatePlayTime() {
+  const now = Date.now();
+  const elapsedSeconds = Math.floor((now - startTime) / 1000);
+
+  const hours = String(Math.floor(elapsedSeconds / 3600)).padStart(2, "0");
+  const minutes = String(Math.floor((elapsedSeconds % 3600) / 60)).padStart(2, "0");
+  const seconds = String(elapsedSeconds % 60).padStart(2, "0");
+
+  playTimeEl.textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+// ⏱️ Cập nhật mỗi giây
+setInterval(updatePlayTime, 1000);
+updatePlayTime();
 </script>
 
 </body>
