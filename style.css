@@ -827,3 +827,37 @@ footer {
 }
 
 /* Ẩn mọi khoảng trống đen thừa dưới cùng */
+/* === FOOTER KHÔNG NỀN ĐEN + CỐ ĐỊNH TRÊN MỌI MÀN HÌNH === */
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  padding: 10px 0;
+  background: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  z-index: 1;
+}
+
+/* === COPYRIGHT ĐINH VIỆT QUỐC KHÁNH === */
+footer.copyright {
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+footer.copyright span {
+  background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowNeon 5s linear infinite;
+  text-shadow:
+    0 0 5px rgba(255,255,255,0.8),
+    0 0 15px rgba(255,255,255,0.6),
+    0 0 25px rgba(255,255,255,0.4);
+}
