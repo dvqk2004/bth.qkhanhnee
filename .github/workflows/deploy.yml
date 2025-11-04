@@ -1,0 +1,95 @@
+name: Build and Deploy (no-sourcemap + obfuscate)
+
+# Chạy khi push vào branch main; chỉnh theo branch bạn dùng
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write     # cần để push gh-pages via action
+      id-token: write
+
+    env:
+      # Thay đổi nếu build output của bạn nằm ở folder khác (./build)
+      PUBLISH_DIR: ./dist
+      # Nếu project của bạn dùng npm script khác để build, chỉnh lại lệnh ở bước Build
+      NODE_VERSION: '18'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (NO source maps)
+        # VITE / CRA / many tools respect GENERATE_SOURCEMAP env var.
+        # Nếu framework bạn dùng không, chỉnh tương ứng.
+        env:
+          GENERATE_SOURCEMAP: 'false'
+        run: |
+          echo "Building project without sourcemaps..."
+          npm run build
+
+      - name: Install terser and javascript-obfuscator
+        run: |
+          npm install -g terser javascript-obfuscator
+
+      - name: Minify + Obfuscate JS files in publish dir
+        # Tìm tất cả .js trong PUBLISH_DIR, minify bằng terser rồi obfuscate bằng javascript-obfuscator.
+        run: |
+          set -e
+          if [ ! -d "${{ env.PUBLISH_DIR }}" ]; then
+            echo "Publish dir '${{ env.PUBLISH_DIR }}' not found. Exiting."
+            exit 1
+          fi
+          echo "Processing JS files under ${{ env.PUBLISH_DIR }} ..."
+          # Tạo temp dir để tránh trùng tên
+          find "${{ env.PUBLISH_DIR }}" -type f -name "*.js" -print0 | while IFS= read -r -d '' file; do
+            echo " - Minifying and obfuscating: $file"
+            # Minify to a temp file
+            terser "$file" -c -m -o "${file}.min.tmp" || { echo "terser failed for $file"; exit 1; }
+            # Obfuscate the minified file and overwrite original
+            javascript-obfuscator "${file}.min.tmp" \
+              --compact true \
+              --control-flow-flattening true \
+              --string-array-encoding base64 \
+              --self-defending true \
+              --rotate-string-array true \
+              --output "$file" || { echo "obfuscator failed for $file"; exit 1; }
+            rm "${file}.min.tmp"
+          done
+          echo "JS files processed."
+
+      - name: Show publish dir size (debug)
+        run: du -sh "${{ env.PUBLISH_DIR }}" || true
+
+      - name: Deploy to GitHub Pages (gh-pages)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # Thư mục chứa file static để deploy
+          publish_dir: ${{ env.PUBLISH_DIR }}
+          # token mặc định GITHUB_TOKEN đủ để deploy; nếu bạn muốn dùng PAT để deploy impersonate, thay ở đây
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Nếu bạn muốn deploy sang một branch khác đổi `publish_branch`
+          # publish_branch: gh-pages
+
+      - name: Cleanup (optional)
+        run: echo "Deploy finished."
