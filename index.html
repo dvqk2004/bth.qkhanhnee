@@ -240,6 +240,51 @@ function updateTimer() {
 
 setInterval(updateTimer, 1000);
 </script>
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+      (e.ctrlKey && e.key === 'U')) {
+    e.preventDefault();
+  }
+});
+</script>
+<script>
+// Chặn chuột phải
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+// Chặn phím tắt F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S, Ctrl+C, Ctrl+P
+document.onkeydown = function(e) {
+  if (e.keyCode == 123) { // F12
+    return false;
+  }
+  if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) { // Ctrl+Shift+I/J
+    return false;
+  }
+  if (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83 || e.keyCode == 67 || e.keyCode == 80)) {
+    return false;
+  }
+};
+</script>
+<script>
+(function(){
+  const allowed = ['qkhanh.bio','dvqk2004.github.io','yourdomain.com']; // domain bạn chấp nhận
+  if (!allowed.includes(location.hostname)) {
+    document.documentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif"><h1>Unauthorized copy detected</h1></div>';
+    // optional: send report to your server
+    try { navigator.sendBeacon('https://your-server.com/report', JSON.stringify({host:location.hostname, url:location.href, time:Date.now()})); } catch(e){}
+  }
+})();
+</script>
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key==='I' || e.key==='J')) || (e.ctrlKey && (e.key==='U' || e.key==='S'))) {
+    e.preventDefault();
+  }
+});
+(function(){ const allowed=['qkhanh.bio','dvqk2004.github.io']; if(!allowed.includes(location.hostname)) { document.documentElement.innerHTML='<h1>Unauthorized copy detected</h1>'; }})();
+</script>
 <footer class="copyright">
   © 2025 <span>Đinh Việt Quốc Khánh</span>. All Rights Reserved.
 </footer>
