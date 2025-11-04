@@ -965,3 +965,20 @@ footer.copyright span {
   0% { background-position: 0% 50%; }
   100% { background-position: 400% 50%; }
 }
+/* --- HIỆU ỨNG FADE-IN TỪ DƯỚI LÊN --- */
+body {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUpSmooth 1.2s ease-out forwards;
+}
+
+@keyframes fadeUpSmooth {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
