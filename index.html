@@ -37,16 +37,42 @@
   </div>
 </div>
   <!-- MẠNG XÃ HỘI -->
-  <div class="socials">
-    <a href="https://discord.gg/UHRtZeAnmW"><img src="icons/discord.png" alt="Discord"></a>
-    <a href="https://www.tiktok.com/@dvqk4"><img src="icons/tiktok.png" alt="TikTok"></a>
-    <a href="https://www.instagram.com/bth.qkhanhnee"><img src="icons/icons8-instagram-logo-94.png" alt="Instagram"></a>
-    <a href="https://web.facebook.com/bth.qkhanhnee/"><img src="icons/fb.png" alt="Facebook"></a>
-  </div>
+<div class="social-blocks">
+  <a href="https://web.facebook.com/bth.qkhanhnee/" class="social-card">
+    <img src="icons/fb.png" alt="Facebook">
+    <span>Facebook</span>
+  </a>
+
+  <a href="https://discord.gg/UHRtZeAnmW" class="social-card">
+    <img src="icons/discord.png" alt="Discord">
+    <span>Discord</span>
+  </a>
+
+  <a href="https://www.tiktok.com/@dvqk4" class="social-card">
+    <img src="icons/tiktok.png" alt="TikTok">
+    <span>TikTok</span>
+  </a>
+
+  <a href="https://www.instagram.com/bth.qkhanhnee" class="social-card">
+    <img src="icons/icons8-instagram-logo-94.png" alt="Instagram">
+    <span>Instagram</span>
+  </a>
+
+  <a href="https://github.com/dvqk2004" class="social-card">
+    <img src="icons/github.png" alt="GitHub">
+    <span>GitHub</span>
+  </a>
+
+  <a href="mailto:qkhanhnee@gmail.com" class="social-card">
+    <img src="icons/mail.png" alt="Email">
+    <span>Email</span>
+  </a>
+</div>
+
 <div class="spotify-player">
   <iframe
     style="border-radius:12px"
-    src="https://open.spotify.com/embed/episode/2L3eTSnIaMLozr9aV9MYGS?utm_source=generator"
+    src="https://open.spotify.com/embed/episode/5CcItNBWVwPg7gYRaOKBBJ?utm_source=generator"
     width="100%"
     height="160"
     frameBorder="0"
@@ -56,36 +82,7 @@
 </div>
 
 </div>
-  <!-- === CAROUSEL === -->
-  <div class="product-carousel">
-    <button class="arrow left" id="leftBtn">❮</button>
-    <div class="product-track" id="productTrack">
-      <div class="product-card">
-        <img src="images/4e47eac6-6833-4bda-b62d-bf20f3e7be98.webp" alt="MOOER MSC10 PRO">
-        <h3>MOOER MSC10 PRO</h3>
-        <p class="price">4.700.000 VND</p>
-        <a href="https://www.instagram.com/bth.qkhanhnee/" class="buy-btn">Chi tiết</a>
-      </div>
-
-      <div class="product-card">
-        <img src="images/multi-effect-pedal-guitar-m-vave-tank-g-mai-nguyen-music.webp" alt="M-Wave Tank G">
-        <h3>M-Wave Tank G</h3>
-        <p class="price">1.xxx.000 VND</p>
-        <a href="https://www.instagram.com/bth.qkhanhnee/" class="buy-btn">Chi tiết</a>
-      </div>
-
-      <div class="product-card">
-        <img src="images/vn-11134207-7r98o-ltl6ptoq4irxae@resize_w450_nl.webp" alt="Nux Mighty Lite BT MKII">
-        <h3>Nux Mighty Lite BT MKII</h3>
-        <p class="price">2.450.000 VND</p>
-        <a href="https://www.instagram.com/bth.qkhanhnee/" class="buy-btn">Chi tiết</a>
-      </div>
-    </div>
-    <button class="arrow right" id="rightBtn">❯</button>
-  </div>
-
   <footer class="copyright">© 2025 Đinh Việt Quốc Khánh</footer>
-
   <!-- === SCRIPT: AUTO SNAP + CONTROL === -->
   <script>
     const track = document.getElementById("productTrack");
@@ -206,6 +203,27 @@ function parseNumber(str) {
 
 // 🚀 Gọi API ngay khi load web
 updateTikTokStats();
+</script>
+<script>
+// === FADE-IN TOÀN TRANG ===
+window.addEventListener("load", () => {
+  document.body.classList.add("loaded");
+
+  // Từng phần tử fade-in khi vào vùng nhìn thấy
+  const faders = document.querySelectorAll(".fade-in");
+  const options = { threshold: 0.1 };
+
+  const appear = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, options);
+
+  faders.forEach(el => appear.observe(el));
+});
 </script>
 
 </body>
