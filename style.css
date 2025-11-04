@@ -10,6 +10,7 @@ body {
 }
 
 /* Lớp gif nền */
+/* Nền gif full trang */
 .gif-bg {
   position: fixed;
   top: 0;
@@ -17,21 +18,22 @@ body {
   width: 100%;
   height: 100%;
   background: url("muanho.gif") center top / cover no-repeat;
-  background-attachment: fixed; /* cho nền dính theo viewport */
+  background-attachment: fixed;
   z-index: -3;
 }
 
-/* Overlay mờ phủ lên nền */
+/* Lớp mờ overlay phủ toàn bộ */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  min-height: 100%;
   background: rgba(0, 0, 0, 0.35);
-  z-index: -1;
+  z-index: -2;
   pointer-events: none;
 }
+
 /* === KHỐI GIỮA === */
 .container {
   margin-top: 60px;
@@ -750,7 +752,7 @@ footer {
   bottom: 0;
   width: 100%;
   text-align: center;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.35);
   padding: 10px 0;
   background: none !important;
   box-shadow: none !important;
@@ -778,4 +780,188 @@ footer.copyright span {
     0 0 15px rgba(255,255,255,0.6),
     0 0 25px rgba(255,255,255,0.4);
 }
+/* RESET + NỀN FULL TRANG */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  width: 100%;
+  background: #000;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
+/* GIF NỀN CHO PC */
+.gif-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("muanho.gif") center center / cover no-repeat;
+  background-attachment: fixed;
+  z-index: -3;
+  will-change: transform;
+}
+
+/* LỚP MỜ PHỦ LÊN NỀN */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* FIX CHO MOBILE - tránh lỗi trắng/đen cuối trang */
+@media (max-width: 767px) {
+  body {
+    background: url("muanho.gif") center top / cover no-repeat;
+    background-attachment: scroll !important;
+    background-size: cover !important;
+    background-position: center center;
+  }
+
+  .gif-bg {
+    display: none !important; /* ẩn nền fixed */
+  }
+}
+
+/* FOOTER BẢO TOÀN MÀU NỀN */
+footer.copyright {
+  background: transparent !important;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  margin: 20px 0;
+}
+
+/* CHỮ ĐINH VIỆT QUỐC KHÁNH NEON 7 MÀU */
+footer.copyright span {
+  background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowNeon 5s linear infinite;
+  text-shadow:
+    0 0 5px rgba(255,255,255,0.8),
+    0 0 15px rgba(255,255,255,0.6),
+    0 0 25px rgba(255,255,255,0.4);
+}
+
+/* HIỆU ỨNG CHUYỂN MÀU 7 MÀU */
+@keyframes rainbowNeon {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
+
+/* TỐI ƯU HIỆU ỨNG PC */
+@media (min-width: 1024px) {
+  .gif-bg {
+    filter: brightness(0.9);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .overlay {
+    background: rgba(0, 0, 0, 0.25);
+  }
+}
+/* === NỀN GIF FULL TRANG === */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: #000;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* === GIF NỀN CHO PC === */
+.gif-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("muanho.gif") center center / cover no-repeat fixed;
+  z-index: -3;
+  animation: fadeInGlobal 2s ease forwards;
+}
+
+/* === LỚP MỜ PHỦ NỀN === */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: -2;
+  pointer-events: none;
+  animation: fadeInGlobal 2s ease forwards;
+}
+
+/* === MOBILE: ẨN GIF-BG, DÙNG BODY NỀN === */
+@media (max-width: 768px) {
+  .gif-bg {
+    display: none !important;
+  }
+
+  body {
+    background: url("muanho.gif") center top / cover no-repeat;
+    background-attachment: scroll !important;
+    background-size: cover !important;
+    background-position: center top !important;
+    background-repeat: no-repeat;
+    animation: fadeInGlobal 2s ease forwards;
+  }
+}
+
+/* === HIỆU ỨNG FADE-IN CHUNG === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInGlobal 1.6s ease forwards;
+  will-change: opacity, transform;
+}
+
+@keyframes fadeInGlobal {
+  from { opacity: 0; transform: scale(1.02) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* === FOOTER === */
+footer.copyright {
+  background: transparent !important;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  margin: 20px 0;
+  animation: fadeInGlobal 2s ease forwards;
+}
+
+/* === CHỮ ĐINH VIỆT QUỐC KHÁNH NEON 7 MÀU === */
+footer.copyright span {
+  background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowNeon 5s linear infinite;
+  text-shadow:
+    0 0 5px rgba(255,255,255,0.8),
+    0 0 15px rgba(255,255,255,0.6),
+    0 0 25px rgba(255,255,255,0.4);
+}
+
+/* === HIỆU ỨNG NEON 7 MÀU === */
+@keyframes rainbowNeon {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
