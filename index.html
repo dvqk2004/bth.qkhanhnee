@@ -248,58 +248,5 @@ function updateTimer() {
 
 setInterval(updateTimer, 1000);
 </script>
-<script>
-const playTimeEl = document.getElementById("playTime");
-
-// 🕒 Lấy thời gian bắt đầu (nếu có)
-let startTime = localStorage.getItem("gameStartTime");
-
-if (!startTime) {
-  // Nếu chưa có, lưu thời gian hiện tại
-  startTime = Date.now();
-  localStorage.setItem("gameStartTime", startTime);
-}
-
-function updatePlayTime() {
-  const now = Date.now();
-  const elapsedSeconds = Math.floor((now - startTime) / 1000);
-
-  const hours = String(Math.floor(elapsedSeconds / 3600)).padStart(2, "0");
-  const minutes = String(Math.floor((elapsedSeconds % 3600) / 60)).padStart(2, "0");
-  const seconds = String(elapsedSeconds % 60).padStart(2, "0");
-
-  playTimeEl.textContent = `${hours}:${minutes}:${seconds}`;
-}
-
-// ⏱️ Cập nhật mỗi giây
-setInterval(updatePlayTime, 1000);
-updatePlayTime();
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  // Lấy thời điểm bắt đầu từ localStorage (nếu chưa có thì lưu mới)
-  let startTime = localStorage.getItem("gameStartTime");
-
-  if (!startTime) {
-    startTime = Date.now();
-    localStorage.setItem("gameStartTime", startTime);
-  }
-
-  function updateTimer() {
-    const elapsed = Math.floor((Date.now() - startTime) / 1000);
-    const hours = Math.floor(elapsed / 3600);
-    const minutes = Math.floor((elapsed % 3600) / 60);
-    const seconds = elapsed % 60;
-
-    document.getElementById("timer").textContent =
-      `${hours.toString().padStart(2, '0')}:` +
-      `${minutes.toString().padStart(2, '0')}:` +
-      `${seconds.toString().padStart(2, '0')}`;
-  }
-
-  setInterval(updateTimer, 1000);
-  updateTimer();
-});
-</script>
 </body>
 </html>
