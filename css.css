@@ -351,17 +351,16 @@ h1 {
 }
 
 /* === FOOTER === */
-.copyright {
+footer {
   position: fixed;
   bottom: 0;
-  left: 0;
   width: 100%;
-  padding: 10px 0;
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  font-size: 12px;
   text-align: center;
-  backdrop-filter: blur(5px);
+  color: white;
+  padding: 10px;
+  background: transparent; /* ❌ bỏ nền đen */
+  box-shadow: none;        /* ❌ bỏ viền tối */
+  backdrop-filter: none;   /* ❌ bỏ hiệu ứng mờ */
 }
 
 /* === RESPONSIVE === */
@@ -736,3 +735,96 @@ body.loaded {
   box-shadow: 0 0 20px rgba(255,255,255,0.35);
   border-color: rgba(255,255,255,0.4);
 }
+/* === GAME OVERLAY CARD (Dưới followers/hearts) === */
+.game-overlay-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin: 15px auto 0 auto;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 8px 14px;
+  width: fit-content;
+  box-shadow: 0 0 10px rgba(0,255,255,0.1);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  animation: fadeIn 1s ease forwards;
+}
+
+.game-overlay-card:hover {
+
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+}
+
+.game-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 0 8px rgba(255,255,255,0.1);
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.status {
+  font-size: 12px;
+  color: #aaa;
+  margin: 0;
+}
+
+.game-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 2px 0;
+}
+
+.game-time {
+  font-size: 13px;
+  color: #6cff6c;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  iframe[src*="spotify"] {
+    margin-bottom: 80px; /* chừa chỗ cho footer */
+  }
+}
+@media (max-width: 768px) {
+  footer {
+    position: relative;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+}
+/* === SPOTIFY PLAYER FIX MOBILE === */
+.spotify-player {
+  width: 100%;
+  max-width: 350px;
+  margin: 20px auto 80px auto; /* chừa khoảng dưới để không đè footer */
+  display: flex;
+  justify-content: center;
+}
+
+/* === FOOTER KHÔNG NỀN ĐEN + CỐ ĐỊNH TRÊN MỌI MÀN HÌNH === */
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  padding: 10px 0;
+  background: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  z-index: 1;
+}
+
+/* Ẩn mọi khoảng trống đen thừa dưới cùng */
+
