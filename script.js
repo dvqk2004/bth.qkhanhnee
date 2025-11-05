@@ -108,3 +108,4 @@ document.addEventListener("DOMContentLoaded", () => {
   loadTikTokStats();
   setInterval(loadTikTokStats, 10 * 60 * 1000); // refresh every 10 minutes
 });
+fetch("/api/tiktok?username=dvqk4")
