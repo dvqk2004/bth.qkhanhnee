@@ -2,7 +2,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('keydown', e => {
   if ((e.ctrlKey && e.key === 's') || (e.ctrlKey && e.key === 'u')) e.preventDefault();
 });
-if(window.location.hostname !== "qkhanh.bio"){
+if(window.location.hostname !== "https://dvqk2004.github.io/bio/"){
   document.body.innerHTML = "<h1>Unauthorized Copy Detected</h1>";
 }
 // ===== TikTok API (Free Unofficial) =====
@@ -127,3 +127,4 @@ fetch(url, options)
     console.log("Hearts:", user.stats.heartCount);
   })
   .catch(err => console.error(err));
+
