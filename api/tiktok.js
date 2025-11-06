@@ -1,5 +1,3 @@
-import fetch from "node-fetch";
-
 export default async function handler(req, res) {
   const username = req.query.username || "dvqk4";
   const url = `https://tiktok-scraper7.p.rapidapi.com/user/info?unique_id=${username}`;
@@ -7,7 +5,7 @@ export default async function handler(req, res) {
   const options = {
     method: "GET",
     headers: {
-      "x-rapidapi-key": "d4f67352f9mshe1bfeed8733aa64p1f5521jsnbac20444ea63",
+      "x-rapidapi-key": process.env.RAPIDAPI_KEY,
       "x-rapidapi-host": "tiktok-scraper7.p.rapidapi.com"
     }
   };
