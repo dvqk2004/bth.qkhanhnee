@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 fetch("/api/tiktok?username=dvqk4")
 
-const url = 'https://tiktok-scraper7.p.rapidapi.com/user/info?unique_id=dvqk4';
+const url = 'https://tiktok-scraper7.p.rapidapi.com/user/story?user_id=7357492073123087392';
 const options = {
   method: 'GET',
   headers: {
@@ -127,4 +127,5 @@ fetch(url, options)
     console.log("Hearts:", user.stats.heartCount);
   })
   .catch(err => console.error(err));
+
 
