@@ -16,12 +16,15 @@ export default async function handler(req, res) {
 
     if (data?.userInfo?.stats) {
       const { followerCount, heartCount } = data.userInfo.stats;
-      res.status(200).json({ followers: followerCount, hearts: heartCount });
+      res.status(200).json({
+        followers: followerCount,
+        hearts: heartCount,
+      });
     } else {
       res.status(500).json({ error: "Invalid TikTok data" });
     }
   } catch (err) {
-    console.error("API Error:", err);
+    console.error("Server API Error:", err);
     res.status(500).json({ error: "Failed to fetch TikTok data" });
   }
 }
