@@ -109,3 +109,21 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(loadTikTokStats, 10 * 60 * 1000); // refresh every 10 minutes
 });
 fetch("/api/tiktok?username=dvqk4")
+
+const url = 'https://tiktok-scraper7.p.rapidapi.com/user/info?unique_id=dvqk4';
+const options = {
+  method: 'GET',
+  headers: {
+    'x-rapidapi-key': 'd4f67352f9mshe1bfeed8733aa64p1f5521jsnbac20444ea63',
+    'x-rapidapi-host': 'tiktok-scraper7.p.rapidapi.com'
+  }
+};
+
+fetch(url, options)
+  .then(res => res.json())
+  .then(data => {
+    const user = data.userInfo;
+    console.log("Followers:", user.stats.followerCount);
+    console.log("Hearts:", user.stats.heartCount);
+  })
+  .catch(err => console.error(err));
